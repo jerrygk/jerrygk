@@ -13,7 +13,9 @@ Only rounded percentages and daily contribution counts reach the image.
 Repository names, byte counts and the number of repositories are never
 written or printed. Standard library only.
 
-Icons are from Primer Octicons (MIT License, Copyright GitHub Inc.).
+Icons are from Primer Octicons (MIT License, Copyright GitHub Inc.). The
+calendar layout is inspired by the isocalendar plugin of lowlighter/metrics
+(MIT License). See NOTICE.
 """
 
 import base64
