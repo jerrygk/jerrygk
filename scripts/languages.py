@@ -21,7 +21,8 @@ THEMES = {
     "light": ("#1f2328", "#59636e"),
     "dark": ("#e6edf3", "#9198a1"),
 }
-EXCLUDE = set()  # language names to leave out of the chart
+# Markup and notebooks, which Linguist does not class as programming languages
+EXCLUDE = {"TeX", "Jupyter Notebook", "HTML", "CSS", "SCSS", "MDX", "Markdown"}
 TOP = 6  # slices shown before the rest are grouped as Other
 
 # Official colours from github-linguist/linguist languages.yml
@@ -144,7 +145,7 @@ def svg(rows, theme):
         f".t{{fill:{text}}}.m{{fill:{muted}}}.h{{font-size:15px;font-weight:600}}.s{{font-size:11px}}"
         "</style>"
         '<text x="20" y="28" class="t h">Languages</text>'
-        '<text x="20" y="44" class="m s">Share of code across all my repositories</text>'
+        '<text x="20" y="44" class="m s">Programming languages across all my repositories</text>'
         + "".join(slices)
         + "".join(legend)
         + "</svg>\n"
