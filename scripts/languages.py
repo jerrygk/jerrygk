@@ -5,7 +5,8 @@ languages-light.svg and languages-dark.svg. Only rounded percentages reach the i
 byte counts and the number of repositories are never written or printed.
 
 Standard library only. The token is read from LANG_TOKEN and needs nothing
-beyond read-only Metadata access.
+beyond read-only Metadata access. Forks and archived repositories are
+skipped, so archiving a repository on GitHub removes it from the chart.
 """
 
 import json
@@ -20,7 +21,7 @@ THEMES = {
     "light": ("#1f2328", "#59636e"),
     "dark": ("#e6edf3", "#9198a1"),
 }
-EXCLUDE = {"HTML"}  # exported notes, not code
+EXCLUDE = set()  # language names to leave out of the chart
 TOP = 6  # slices shown before the rest are grouped as Other
 
 # Official colours from github-linguist/linguist languages.yml
@@ -84,7 +85,7 @@ def repositories(token):
 def totals(token):
     counts = {}
     for repo in repositories(token):
-        if repo["fork"]:
+        if repo["fork"] or repo["archived"]:
             continue
         languages, _ = get(repo["languages_url"], token)
         for name, size in languages.items():
